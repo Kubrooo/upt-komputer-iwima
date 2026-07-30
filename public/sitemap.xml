@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Homepage / Main Portal -->
+  <url>
+    <loc>https://upt-komputer-iwima.vercel.app/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+  </url>
+  <!-- Layanan UPT Komputer -->
+  <url>
+    <loc>https://upt-komputer-iwima.vercel.app/#services</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <!-- Fasilitas Laboratorium -->
+  <url>
+    <loc>https://upt-komputer-iwima.vercel.app/#labs</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <!-- Sistem Bantuan & Tiket Support -->
+  <url>
+    <loc>https://upt-komputer-iwima.vercel.app/#tickets</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <!-- Dokumentasi Kegiatan & Galeri -->
+  <url>
+    <loc>https://upt-komputer-iwima.vercel.app/#documentation</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <!-- FAQ & Bantuan -->
+  <url>
+    <loc>https://upt-komputer-iwima.vercel.app/#faq</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+</urlset>

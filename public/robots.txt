@@ -1,0 +1,6 @@
+# Robots.txt for UPT Komputer IWIMA (Vercel Deployment)
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://upt-komputer-iwima.vercel.app/sitemap.xml
