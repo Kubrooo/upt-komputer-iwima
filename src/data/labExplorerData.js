@@ -1,3 +1,9 @@
+/**
+ * Data Detail Unit & Spesifikasi Laboratorium Komputer UPT IWIMA.
+ * Digunakan oleh komponen LabExplorer.jsx untuk menampilkan info detail fasilitas & hardware.
+ *
+ * @type {Object}
+ */
 export const labData = {
   komputer: {
     name: 'Laboratorium Komputer Utama',

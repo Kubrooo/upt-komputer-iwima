@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Command, Menu, X, ChevronRight, PhoneCall } from 'lucide-react';
 
+/**
+ * Komponen Navigasi Atas (Navbar) Portal UPT Komputer IWIMA.
+ * Menyediakan navigasi antar-section, efek scroll backdrop blur, serta pemicu Quick Search Modal.
+ *
+ * @param {Object} props - Props komponen
+ * @param {Function} props.onOpenSearch - Callback untuk membuka modal pencarian cepat (Ctrl+K)
+ */
 export default function Navbar({ onOpenSearch }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

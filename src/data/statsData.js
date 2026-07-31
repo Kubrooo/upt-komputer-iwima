@@ -1,5 +1,9 @@
 import { Zap, Target, HeartHandshake, Compass } from 'lucide-react';
 
+/**
+ * Data Statistik Vital & Pilar Nilai Utama UPT Komputer IWIMA.
+ * Digunakan oleh komponen HiddenBackbone.jsx dan WhyUPTExists.jsx.
+ */
 export const stats = [
   { number: '51 Unit', label: 'Perangkat PC High-Spec', desc: '50 PC Praktikan + 1 Master Console Dosen' },
   { number: '100Mbps+', label: 'Kecepatan Internet', desc: 'Koneksi dedicated untuk riset & praktikum' },

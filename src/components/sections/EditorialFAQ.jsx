@@ -3,6 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, MessageSquare } from 'lucide-react';
 import { faqs } from '../../data/faqsData';
 
+/**
+ * Komponen EditorialFAQ.
+ * Menampilkan daftar pertanyaan yang sering diajukan (FAQ) seputar operasional lab,
+ * bantuan teknis, dan perizinan dalam format akordeon interaktif.
+ */
 export default function EditorialFAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 

@@ -4,6 +4,11 @@ import { Monitor, Users, CheckCircle2, Sparkles, Maximize2 } from 'lucide-react'
 import { labData } from '../../data/labExplorerData';
 import SectionHeader from '../common/SectionHeader';
 
+/**
+ * Komponen LabExplorer.
+ * Menampilkan eksplorasi unit laboratorium komputasi utama beserta spesifikasi PC,
+ * kapasitas ruangan, dukungan software, dan jam operasional.
+ */
 export default function LabExplorer() {
   const [activeTabSpec, setActiveTabSpec] = useState('specs');
   const [photoZoom, setPhotoZoom] = useState(false);

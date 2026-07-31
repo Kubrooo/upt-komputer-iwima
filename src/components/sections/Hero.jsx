@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Monitor, CheckCircle2, Terminal, ShieldAlert } from 'lucide-react';
 
+/**
+ * Komponen Hero Section.
+ * Bagian atas utama yang menampilkan judul editorial UPT Komputer, status operasional real-time,
+ * statistik interaktif, serta Call To Action (CTA) ke Tiket Bantuan dan Penjelajah Lab.
+ *
+ * @param {Object} props - Props komponen
+ * @param {Function} props.onOpenSearch - Callback untuk membuka modal pencarian cepat (Ctrl+K)
+ */
 export default function Hero({ onOpenSearch }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 

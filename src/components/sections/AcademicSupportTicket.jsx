@@ -5,6 +5,11 @@ import confetti from 'canvas-confetti';
 import { supportIssues } from '../../data/supportData';
 import SectionHeader from '../common/SectionHeader';
 
+/**
+ * Komponen AcademicSupportTicket.
+ * Menangani formulir pengajuan tiket bantuan teknis akademik (lupa password, kendala software, dll.)
+ * serta membuat struk tiket otomatis dan memicu efek selebrasi kembang api.
+ */
 export default function AcademicSupportTicket() {
   const [issueType, setIssueType] = useState('instalasi');
   const [studentName, setStudentName] = useState('');

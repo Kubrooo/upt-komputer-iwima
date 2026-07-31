@@ -11,6 +11,10 @@ import EditorialFAQ from './components/sections/EditorialFAQ';
 import QuickSearchModal from './components/modals/QuickSearchModal';
 import Footer from './components/layout/Footer';
 
+/**
+ * Komponen Utama (Root) Portal Web UPT Komputer IWIMA.
+ * Menggabungkan seluruh bagian halaman dan mengelola state global untuk Quick Search Modal.
+ */
 export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
 

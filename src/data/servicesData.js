@@ -1,5 +1,11 @@
 import { Monitor, Wrench, ShieldCheck } from 'lucide-react';
 
+/**
+ * Data Katalog Layanan Utama UPT Komputer IWIMA.
+ * Digunakan oleh komponen FeaturedServices.jsx untuk merender kartu & detail spesifikasi layanan.
+ *
+ * @type {Array<Object>}
+ */
 export const services = [
   {
     id: 'lab-komputer',

@@ -2,6 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { stats } from '../../data/statsData';
 
+/**
+ * Komponen HiddenBackbone.
+ * Menampilkan alur narasi peran UPT Komputer ("The Story") serta statistik vital
+ * infrastruktur jaringan, jam operasional, dan kapasitas komputer.
+ */
 export default function HiddenBackbone() {
   const steps = [
     { num: '01', title: 'Kendala Mahasiswa', desc: 'Tugas bertumpuk, error instalasi software, atau perangkat pribadi yang terbatas.' },

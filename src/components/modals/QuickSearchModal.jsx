@@ -3,6 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, ArrowRight } from 'lucide-react';
 import { searchItems } from '../../data/searchData';
 
+/**
+ * Komponen Modal Command Palette / Quick Search.
+ * Menyediakan dialog pencarian instan dengan shortcut keyboard (Ctrl+K atau Escape).
+ *
+ * @param {Object} props - Props komponen
+ * @param {boolean} props.isOpen - State apakah modal sedang terbuka
+ * @param {Function} props.onClose - Callback untuk menutup modal
+ */
 export default function QuickSearchModal({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
 

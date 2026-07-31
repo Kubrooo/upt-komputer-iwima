@@ -1,3 +1,9 @@
+/**
+ * Data Pertanyaan Umum (FAQ) UPT Komputer IWIMA.
+ * Digunakan oleh komponen EditorialFAQ.jsx untuk merender daftar pertanyaan & jawaban.
+ *
+ * @type {Array<{q: string, a: string}>}
+ */
 export const faqs = [
   {
     q: "Siapa saja yang berhak menggunakan fasilitas komputer IWIMA?",

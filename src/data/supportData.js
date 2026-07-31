@@ -1,3 +1,9 @@
+/**
+ * Data Kategori Isu Bantuan Teknis Akademik.
+ * Digunakan oleh komponen AcademicSupportTicket.jsx untuk pilihan opsi tiket bantuan.
+ *
+ * @type {Array<{id: string, title: string, desc: string, timeEst: string, steps: Array<string>}>}
+ */
 export const supportIssues = [
   {
     id: 'instalasi',

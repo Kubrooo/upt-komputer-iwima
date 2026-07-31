@@ -1,6 +1,10 @@
 import React from 'react';
 import { MapPin, Mail, Clock } from 'lucide-react';
 
+/**
+ * Komponen Footer Portal UPT Komputer IWIMA.
+ * Menampilkan informasi identitas kampus, tautan navigasi pintas, alamat lokasi, jam kerja, serta status sistem.
+ */
 export default function Footer() {
   return (
     <footer id="footer" className="bg-paper-950 text-paper-100 border-t border-paper-800 pt-20 pb-12 px-4 sm:px-6 lg:px-8 relative scroll-section">

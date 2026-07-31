@@ -1,3 +1,9 @@
+/**
+ * Data Dokumentasi Foto & Kegiatan UPT Komputer IWIMA.
+ * Digunakan oleh komponen DocumentationGallery.jsx untuk menampilkan galeri kegiatan lab.
+ *
+ * @type {Array<{id: number, category: string, title: string, desc: string, image: string, tag: string}>}
+ */
 export const galleryItems = [
   {
     id: 1,

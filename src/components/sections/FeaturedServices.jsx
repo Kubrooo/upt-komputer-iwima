@@ -4,6 +4,12 @@ import { Sparkles, ArrowUpRight, Check } from 'lucide-react';
 import { services } from '../../data/servicesData';
 import SectionHeader from '../common/SectionHeader';
 
+/**
+ * Komponen FeaturedServices.
+ * Menampilkan katalog interaktif dua pilar layanan utama UPT Komputer:
+ * 1. Laboratorium Komputer Utama (Hardware & PC Specs)
+ * 2. Software & Hardware Support (Software Catalog & Troubleshooting)
+ */
 export default function FeaturedServices() {
   const [activeTab, setActiveTab] = useState(0);
 

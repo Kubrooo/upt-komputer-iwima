@@ -4,6 +4,11 @@ import { Eye, X, Sparkles } from 'lucide-react';
 import { galleryItems } from '../../data/galleryData';
 import SectionHeader from '../common/SectionHeader';
 
+/**
+ * Komponen DocumentationGallery.
+ * Menampilkan galeri foto & dokumentasi kegiatan praktikum, riset, dan pemeliharaan lab
+ * lengkap dengan filter kategori dan modal pratinjau gambar resolusi tinggi.
+ */
 export default function DocumentationGallery() {
   const [filter, setFilter] = useState('all');
   const [activeImage, setActiveImage] = useState(null);

@@ -3,6 +3,10 @@ import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import { pillars } from '../../data/statsData';
 
+/**
+ * Komponen WhyUPTExists.
+ * Menjelaskan 3 pilar utama alasan keberadaan UPT Komputer (Akses Terbuka, Keandalan Fasilitas, & Pendampingan).
+ */
 export default function WhyUPTExists() {
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-paper-950 text-paper-100 relative overflow-hidden scroll-section">
