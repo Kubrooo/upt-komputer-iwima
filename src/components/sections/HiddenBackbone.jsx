@@ -59,7 +59,7 @@ export default function HiddenBackbone() {
             viewport={{ once: true, margin: "-50px" }}
             variants={{
               hidden: {},
-              show: { transition: { staggerChildren: 0.1 } }
+              show: { transition: { staggerChildren: 0.08 } }
             }}
             className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4"
           >
@@ -67,30 +67,34 @@ export default function HiddenBackbone() {
               <motion.div
                 key={idx}
                 variants={{
-                  hidden: { opacity: 0, y: 55, scale: 0.88 },
+                  hidden: { opacity: 0, y: 40, scale: 0.9 },
                   show: {
                     opacity: 1,
                     y: 0,
                     scale: 1,
-                    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+                    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
                   }
                 }}
-                whileHover={{ y: -12, scale: 1.05, rotate: idx % 2 === 0 ? 2 : -2 }}
+                whileHover={{
+                  y: -12,
+                  scale: 1.05,
+                  rotate: idx % 2 === 0 ? 2.5 : -2.5,
+                  transition: { type: "spring", stiffness: 450, damping: 16, mass: 0.6 }
+                }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 450, damping: 14 }}
-                className={`p-6 rounded-2xl border space-y-3 relative group transition-all duration-300 cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 ${
+                className={`p-6 rounded-2xl border space-y-3 relative group transition-colors duration-200 cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-amber-500/25 ${
                   st.isHighlight
                     ? 'bg-amber-950/40 border-amber-500/50 hover:border-amber-400 shadow-xl shadow-amber-500/10'
                     : 'bg-paper-950 border-paper-800 hover:border-amber-400'
                 }`}
               >
-                <span className={`text-2xl font-serif italic font-bold block ${st.isHighlight ? 'text-amber-400' : 'text-amber-400/60'}`}>
+                <span className={`text-2xl font-serif italic font-bold block transition-transform duration-300 group-hover:scale-110 ${st.isHighlight ? 'text-amber-400' : 'text-amber-400/60'}`}>
                   {st.num}
                 </span>
-                <h3 className={`font-serif text-lg font-medium ${st.isHighlight ? 'text-amber-300' : 'text-paper-100'}`}>
+                <h3 className={`font-serif text-lg font-medium transition-colors duration-200 ${st.isHighlight ? 'text-amber-300' : 'text-paper-100 group-hover:text-amber-300'}`}>
                   {st.title}
                 </h3>
-                <p className={`text-xs leading-relaxed ${st.isHighlight ? 'text-paper-200' : 'text-paper-400'}`}>
+                <p className={`text-xs leading-relaxed ${st.isHighlight ? 'text-paper-200' : 'text-paper-400 group-hover:text-paper-200'}`}>
                   {st.desc}
                 </p>
               </motion.div>

@@ -46,20 +46,24 @@ export default function WhyUPTExists() {
               <motion.div
                 key={idx}
                 variants={{
-                  hidden: { opacity: 0, y: 60, scale: 0.9 },
+                  hidden: { opacity: 0, y: 40, scale: 0.9 },
                   show: {
                     opacity: 1,
                     y: 0,
                     scale: 1,
-                    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+                    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
                   }
                 }}
-                whileHover={{ y: -12, scale: 1.05, rotate: idx % 2 === 0 ? 2 : -2 }}
+                whileHover={{
+                  y: -12,
+                  scale: 1.05,
+                  rotate: idx % 2 === 0 ? 2.5 : -2.5,
+                  transition: { type: "spring", stiffness: 450, damping: 16, mass: 0.6 }
+                }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 450, damping: 14 }}
                 className="h-full flex flex-col"
               >
-                <div className="h-full flex-1 bg-paper-900/90 p-8 rounded-2xl border border-paper-800 flex flex-col justify-between hover:border-amber-400 transition-all duration-300 group cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-amber-500/20">
+                <div className="h-full flex-1 bg-paper-900/90 p-8 rounded-2xl border border-paper-800 flex flex-col justify-between hover:border-amber-400 transition-colors duration-200 group cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-amber-500/25">
                   <div className="space-y-4 flex-1 flex flex-col">
                     <motion.div
                       whileHover={{ scale: 1.3, rotate: [0, -15, 15, -10, 0] }}

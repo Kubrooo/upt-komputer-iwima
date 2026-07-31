@@ -67,14 +67,19 @@ export default function DocumentationGallery() {
                 viewport={{ once: true, margin: "-30px" }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{
-                  duration: 0.6,
-                  delay: idx * 0.1,
+                  duration: 0.45,
+                  delay: idx * 0.08,
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                whileHover={{ y: -12, scale: 1.05, rotate: idx % 2 === 0 ? 2 : -2 }}
+                whileHover={{
+                  y: -12,
+                  scale: 1.05,
+                  rotate: idx % 2 === 0 ? 2.5 : -2.5,
+                  transition: { type: "spring", stiffness: 450, damping: 16, mass: 0.6 }
+                }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveImage(item)}
-                className="group relative rounded-2xl overflow-hidden bg-paper-900 border border-paper-800 cursor-pointer shadow-lg hover:border-amber-400 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/20"
+                className="group relative rounded-2xl overflow-hidden bg-paper-900 border border-paper-800 cursor-pointer shadow-lg hover:border-amber-400 transition-colors duration-200 hover:shadow-2xl hover:shadow-amber-500/25"
               >
                 <div className="h-64 overflow-hidden relative">
                   <img
