@@ -31,7 +31,15 @@ export default function AcademicSupportTicket() {
 
   return (
     <section id="support" className="py-24 px-4 sm:px-6 lg:px-8 bg-paper-900 border-b border-paper-800 relative overflow-hidden scroll-section">
-      <div className="max-w-7xl mx-auto space-y-16">
+      {/* Background Enhancements */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none animate-float-slow" />
+      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-amber-600/5 rounded-full blur-[130px] pointer-events-none animate-float-delayed" />
+      <div className="absolute top-1/2 right-10 text-[140px] font-serif font-black text-amber-500/[0.03] select-none pointer-events-none tracking-widest uppercase hidden lg:block">
+        TICKET
+      </div>
+
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
 
         {/* Section Header */}
         <motion.div

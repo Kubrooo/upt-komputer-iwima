@@ -58,8 +58,17 @@ export default function UPTDump() {
 
   return (
     <section id="dump" className="py-24 px-4 sm:px-6 lg:px-8 bg-paper-950 text-paper-100 relative overflow-hidden scroll-section border-t border-paper-800/80">
-      {/* Glow Effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Grid Pattern Background */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+
+      {/* Ambient Glow Orbs with Floating Motion */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[130px] pointer-events-none animate-float-slow" />
+      <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-[140px] pointer-events-none animate-float-delayed" />
+
+      {/* Large Typography Background Watermark */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[100px] sm:text-[170px] font-serif font-black text-amber-500/[0.04] select-none pointer-events-none tracking-widest whitespace-nowrap uppercase leading-none">
+        UPT DUMP
+      </div>
 
       <div className="max-w-4xl mx-auto space-y-12 relative z-10 text-center">
         

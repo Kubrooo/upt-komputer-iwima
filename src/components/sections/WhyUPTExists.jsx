@@ -10,7 +10,15 @@ import { pillars } from '../../data/statsData';
 export default function WhyUPTExists() {
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-paper-950 text-paper-100 relative overflow-hidden scroll-section">
-      <div className="max-w-7xl mx-auto space-y-16">
+      {/* Background Enhancements */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-amber-600/5 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 text-[140px] font-serif font-black text-amber-500/[0.025] select-none pointer-events-none tracking-widest uppercase hidden lg:block">
+        MISSION
+      </div>
+
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
 
         {/* Editorial Header */}
         <motion.div

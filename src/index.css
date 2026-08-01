@@ -56,6 +56,39 @@
   box-shadow: 0 0 50px -10px rgba(30, 58, 138, 0.25);
 }
 
+/* Ambient Floating Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-25px) scale(1.06);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.12;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.22;
+    transform: scale(1.08);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 9s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatSlow 12s ease-in-out 3s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
 /* Grid background pattern */
 .bg-grid-pattern {
   background-size: 40px 40px;

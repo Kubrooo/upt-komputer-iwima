@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Monitor, CheckCircle2, Terminal, ShieldAlert } from 'lucide-react';
 
@@ -12,17 +12,44 @@ import { ArrowRight, Monitor, CheckCircle2, Terminal, ShieldAlert } from 'lucide
  */
 export default function Hero({ onOpenSearch }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef(null);
+  const rectRef = useRef({ left: 0, top: 0 });
+  const rafId = useRef(null);
+
+  const updateRect = () => {
+    if (sectionRef.current) {
+      rectRef.current = sectionRef.current.getBoundingClientRect();
+    }
+  };
+
+  useEffect(() => {
+    updateRect();
+    window.addEventListener('resize', updateRect, { passive: true });
+    window.addEventListener('scroll', updateRect, { passive: true });
+    return () => {
+      window.removeEventListener('resize', updateRect);
+      window.removeEventListener('scroll', updateRect);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
+  }, []);
 
   const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+    if (rafId.current) return;
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+
+    rafId.current = requestAnimationFrame(() => {
+      setMousePos({
+        x: clientX - rectRef.current.left,
+        y: clientY - rectRef.current.top,
+      });
+      rafId.current = null;
     });
   };
 
   return (
     <section
+      ref={sectionRef}
       onMouseMove={handleMouseMove}
       className="relative min-h-screen flex items-center justify-center pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-paper-950 bg-grid-pattern scroll-section"
     >
@@ -39,7 +66,7 @@ export default function Hero({ onOpenSearch }) {
         <div className="absolute inset-0 bg-gradient-to-t from-paper-950 via-paper-950/50 to-paper-950/20 z-10" />
         <div className="absolute inset-0 bg-gradient-to-r from-paper-950/70 via-transparent to-paper-950/70 z-10" />
         <img
-          src="/images/DSC03564.webp"
+          src="/images/hero-background.webp"
           alt="Suasana Laboratorium Komputer IWIMA"
           className="w-full h-full object-cover object-center filter brightness-75 contrast-110 scale-105"
         />

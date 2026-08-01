@@ -5,7 +5,7 @@
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8?style=flat-square&logo=tailwindcss)
 ![Framer_Motion](https://img.shields.io/badge/Framer_Motion-11.11-ff0055?style=flat-square&logo=framer)
 
-Selamat datang di repositori resmi **Portal Web UPT Komputer IWIMA** (Unit Pelaksana Teknis Komputer Institut Widyagama Malang). Portal ini dirancang dengan estetika editorial modern (*Editorial Dark Mode*) untuk memberikan informasi lengkap, layanan laboratorium, ticketing bantuan akademik, galeri kegiatan, serta akses pencarian cepat bagi civitas akademika.
+Selamat datang di repositori resmi **Portal Web UPT Komputer IWIMA** (Unit Pelaksana Teknis Komputer Institut Widya Pratama). Portal ini dirancang dengan estetika editorial modern (*Editorial Dark Mode*) untuk memberikan informasi lengkap, layanan laboratorium, ticketing bantuan akademik, galeri kegiatan, serta akses pencarian cepat bagi civitas akademika.
 
 ---
 
@@ -65,7 +65,9 @@ UPT Komputer IWIMA berperan sebagai tulang punggung infrastruktur teknologi info
 
 ```text
 upt_komputer_iwima/
-├── public/                 # Asset statis publik
+├── public/                 # Asset statis publik (images, photo_dump)
+│   ├── images/
+│   └── photo_dump/
 ├── src/
 │   ├── components/         # Komponen React modular
 │   │   ├── common/         # Komponen reusabel (misal: SectionHeader)
@@ -83,8 +85,10 @@ upt_komputer_iwima/
 │   │       ├── LabExplorer.jsx
 │   │       ├── AcademicSupportTicket.jsx
 │   │       ├── DocumentationGallery.jsx
+│   │       ├── UPTDump.jsx
 │   │       └── EditorialFAQ.jsx
 │   ├── data/               # Sumber data statis terpisah (JSON/JS Objects)
+│   │   ├── dumpData.js
 │   │   ├── faqsData.js
 │   │   ├── galleryData.js
 │   │   ├── labExplorerData.js
@@ -167,6 +171,9 @@ Untuk mempermudah pemeliharaan tanpa mengubah kode UI, semua konten web dipisahk
 6. **`supportData.js` & `statsData.js`**  
    Menyimpan data kategori tiket dukungan dan metrik statistik vital UPT Komputer.
 
+7. **`dumpData.js`**  
+   Menyimpan data item foto polaroid dan jumlah suka untuk komponen UPT Dump.
+
 ---
 
 ## Dokumentasi Komponen Utama
@@ -199,4 +206,4 @@ Command Build Vercel:
 
 ---
 
-*Dikembangkan untuk UPT Komputer IWIMA - Universitas / Institut Widyagama Malang.*
+*Dikembangkan untuk UPT Komputer IWIMA - Universitas / Institut Widya Pratama.*
