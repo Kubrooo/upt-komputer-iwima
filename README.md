@@ -9,7 +9,7 @@ Selamat datang di repositori resmi **Portal Web UPT Komputer IWIMA** (Unit Pelak
 
 ---
 
-## 📋 Daftar Isi
+## Daftar Isi
 
 1. [Gambaran Umum](#-gambaran-umum)
 2. [Fitur Utama](#-fitur-utama)
@@ -22,7 +22,7 @@ Selamat datang di repositori resmi **Portal Web UPT Komputer IWIMA** (Unit Pelak
 
 ---
 
-## 🌐 Gambaran Umum
+## Gambaran Umum
 
 UPT Komputer IWIMA berperan sebagai tulang punggung infrastruktur teknologi informasi dan komputasi di lingkungan kampus. Web portal ini berfungsi sebagai pintu gerbang utama bagi mahasiswa, dosen, dan staf untuk:
 - Mengakses informasi fasilitas & spesifikasi Laboratorium Komputer.
@@ -33,7 +33,7 @@ UPT Komputer IWIMA berperan sebagai tulang punggung infrastruktur teknologi info
 
 ---
 
-## 🚀 Fitur Utama
+## Fitur Utama
 
 | Fitur | Deskripsi | Komponen Terkait |
 | :--- | :--- | :--- |
@@ -50,7 +50,7 @@ UPT Komputer IWIMA berperan sebagai tulang punggung infrastruktur teknologi info
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 - **Core Framework**: [React 18](https://react.dev/) & [Vite](https://vitejs.dev/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) dengan skema warna *Custom Paper Dark Mode* (`paper-950`, `paper-900`, `amber-400`, dll.)
@@ -61,7 +61,7 @@ UPT Komputer IWIMA berperan sebagai tulang punggung infrastruktur teknologi info
 
 ---
 
-## 📁 Struktur Proyek
+## Struktur Proyek
 
 ```text
 upt_komputer_iwima/
@@ -107,7 +107,7 @@ upt_komputer_iwima/
 
 ---
 
-## ⚙️ Panduan Instalasi & Penggunaan
+## Panduan Instalasi & Penggunaan
 
 ### Prasyarat System
 Pastikan komputer Anda telah terinstal:
@@ -145,7 +145,7 @@ Pastikan komputer Anda telah terinstal:
 
 ---
 
-## 📊 Struktur Data & Kustomisasi
+## Struktur Data & Kustomisasi
 
 Untuk mempermudah pemeliharaan tanpa mengubah kode UI, semua konten web dipisahkan di direktori `src/data/`:
 
@@ -169,7 +169,7 @@ Untuk mempermudah pemeliharaan tanpa mengubah kode UI, semua konten web dipisahk
 
 ---
 
-## 🧩 Dokumentasi Komponen Utama
+## Dokumentasi Komponen Utama
 
 ### `App.jsx`
 [src/App.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/App.jsx)  
@@ -189,7 +189,7 @@ Menggabungkan class Tailwind secara dinamis dengan mengombinasikan `clsx` dan `t
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 Repositori ini sudah dilengkapi konfigurasi `vercel.json` untuk kemudahan penggelaran (*deployment*) di platform **Vercel** atau platform hosting statis lainnya (Netlify, GitHub Pages, Cloudflare Pages).
 
