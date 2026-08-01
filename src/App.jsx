@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
+import LazySection from './components/common/LazySection';
 
 // Below-The-Fold Lazy Loaded Sections
 const HiddenBackbone = lazy(() => import('./components/sections/HiddenBackbone'));
@@ -57,20 +58,38 @@ export default function App() {
       <main>
         <Hero onOpenSearch={() => setSearchOpen(true)} />
         <Suspense fallback={null}>
-          <HiddenBackbone />
-          <WhyUPTExists />
-          <FeaturedServices />
-          <LabExplorer />
-          <AcademicSupportTicket />
-          <DocumentationGallery />
-          <UPTDump />
-          <EditorialFAQ />
+          <LazySection minHeight="350px">
+            <HiddenBackbone />
+          </LazySection>
+          <LazySection minHeight="450px">
+            <WhyUPTExists />
+          </LazySection>
+          <LazySection minHeight="500px">
+            <FeaturedServices />
+          </LazySection>
+          <LazySection minHeight="550px">
+            <LabExplorer />
+          </LazySection>
+          <LazySection minHeight="500px">
+            <AcademicSupportTicket />
+          </LazySection>
+          <LazySection minHeight="550px">
+            <DocumentationGallery />
+          </LazySection>
+          <LazySection minHeight="500px">
+            <UPTDump />
+          </LazySection>
+          <LazySection minHeight="550px">
+            <EditorialFAQ />
+          </LazySection>
         </Suspense>
       </main>
 
       {/* Footer */}
       <Suspense fallback={null}>
-        <Footer />
+        <LazySection minHeight="250px">
+          <Footer />
+        </LazySection>
         <QuickSearchModal
           isOpen={searchOpen}
           onClose={() => setSearchOpen(false)}
