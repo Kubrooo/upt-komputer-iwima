@@ -77,40 +77,25 @@ export default function Hero({ onOpenSearch }) {
       <div className="relative z-20 max-w-5xl mx-auto text-center space-y-8 mt-6">
 
         {/* Storytelling Problem Statement Tagline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-paper-900/90 border border-paper-700/80 backdrop-blur-md shadow-xl"
-        >
+        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-paper-900/90 border border-paper-700/80 backdrop-blur-md shadow-xl">
           <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
           <span className="text-xs font-mono uppercase tracking-wider text-paper-200">
             A Place to Grow Together — UPT Komputer IWIMA
           </span>
-        </motion.div>
+        </div>
 
         {/* Emotional Storytelling Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.2 }}
-          className="space-y-4 max-w-4xl mx-auto"
-        >
+        <div className="space-y-4 max-w-4xl mx-auto">
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif tracking-tight leading-[1.1] text-paper-50 font-normal">
             Banyak yang menggunakan fasilitas kampus setiap hari.
           </h1>
           <p className="text-xl sm:text-2xl md:text-3xl font-serif italic text-amber-200/90 font-light max-w-3xl mx-auto">
             Kami hadir memastikan setiap perangkat, laboratorium, dan software perkuliahanmu selalu siap tanpa hambatan.
           </p>
-        </motion.div>
+        </div>
 
         {/* Reveal: UPT Komputer IWIMA */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="pt-2 pb-4"
-        >
+        <div className="pt-2 pb-4">
           <div className="inline-block relative">
             <span className="text-xs uppercase font-mono tracking-widest text-paper-300 block mb-2">
               Memperkenalkan
@@ -122,7 +107,7 @@ export default function Hero({ onOpenSearch }) {
               Bukan sekadar pengelola laboratorium. Kami adalah <span className="text-paper-100 font-medium underline decoration-amber-500/60 underline-offset-4">support system</span> di balik setiap praktikum, pengetikan tugas akhir, hingga kelancaran proses belajar civitas akademika.
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Emotional Problem Micro Cards - Student Pain Points */}
         <motion.div
