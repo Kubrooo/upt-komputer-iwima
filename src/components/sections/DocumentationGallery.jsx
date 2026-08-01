@@ -98,6 +98,9 @@ export default function DocumentationGallery() {
                   <img
                     src={item.image}
                     alt={item.title}
+                    width="600"
+                    height="400"
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90 group-hover:brightness-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-paper-950 via-paper-950/20 to-transparent" />

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight, Monitor, CheckCircle2, Terminal, ShieldAlert } from 'lucide-react';
 
 /**
@@ -66,6 +65,8 @@ export default function Hero({ onOpenSearch }) {
         <img
           src="/images/hero-background.webp"
           alt="Suasana Laboratorium Komputer IWIMA"
+          width="1200"
+          height="680"
           fetchpriority="high"
           decoding="async"
           className="w-full h-full object-cover object-center filter brightness-75 contrast-110 scale-105"
@@ -110,12 +111,7 @@ export default function Hero({ onOpenSearch }) {
         </div>
 
         {/* Emotional Problem Micro Cards - Student Pain Points */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto pt-2 text-left"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto pt-2 text-left">
           <div className="bg-paper-900/80 backdrop-blur-md p-3.5 rounded-xl border border-paper-800/80 text-xs space-y-1 hover:border-paper-700 transition-colors">
             <div className="flex items-center gap-2 text-amber-400 font-mono">
               <ShieldAlert className="w-3.5 h-3.5" />
@@ -139,49 +135,33 @@ export default function Hero({ onOpenSearch }) {
             </div>
             <p className="text-paper-300">Staf teknis responsif siap membantumu mencari solusi teknis.</p>
           </div>
-        </motion.div>
+        </div>
 
         {/* CTA Microcopy Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
-        >
-          <motion.a
-            whileHover={{ scale: 1.08, y: -4 }}
-            whileTap={{ scale: 0.94 }}
-            transition={{ type: "spring", stiffness: 400, damping: 15 }}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <a
             href="#story"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-paper-950 font-semibold text-sm transition-colors duration-300 shadow-xl shadow-amber-500/25 group cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 hover:scale-105 active:scale-95 text-paper-950 font-semibold text-sm transition-all duration-300 shadow-xl shadow-amber-500/25 group cursor-pointer"
           >
             <span>Mulai Mengenal UPT</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </motion.a>
+          </a>
 
-          <motion.a
-            whileHover={{ scale: 1.08, y: -4 }}
-            whileTap={{ scale: 0.94 }}
-            transition={{ type: "spring", stiffness: 400, damping: 15 }}
+          <a
             href="#labs"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-paper-900 hover:bg-paper-800 border border-paper-700 hover:border-amber-400 text-paper-100 font-medium text-sm transition-colors duration-300 group cursor-pointer shadow-lg"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-paper-900 hover:bg-paper-800 hover:scale-105 active:scale-95 border border-paper-700 hover:border-amber-400 text-paper-100 font-medium text-sm transition-all duration-300 group cursor-pointer shadow-lg"
           >
             <Monitor className="w-4 h-4 text-paper-400 group-hover:text-amber-400 transition-colors" />
             <span>Jelajahi Laboratorium</span>
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
 
         {/* Keyboard shortcut hint */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="pt-4 text-xs font-mono text-paper-300 flex items-center justify-center gap-2"
-        >
+        <div className="pt-4 text-xs font-mono text-paper-300 flex items-center justify-center gap-2">
           <span>Tekan</span>
           <kbd className="px-2 py-0.5 rounded bg-paper-800 border border-paper-700 text-paper-200">Ctrl + K</kbd>
           <span>untuk akses navigasi instan</span>
-        </motion.div>
+        </div>
 
       </div>
     </section>

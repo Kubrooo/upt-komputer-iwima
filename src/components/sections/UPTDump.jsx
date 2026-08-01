@@ -96,11 +96,11 @@ export default function UPTDump() {
                 animating
                   ? animDirection === 'next'
                     ? 'card-anim-promote-back'
-                    : 'card-anim-demote-back'
+                    : 'card-anim-demote-mid'
                   : ''
               }`}
             >
-              <img src={backItem.image} alt="Photo Dump" />
+              <img src={backItem.image} alt="Photo Dump UPT" width="500" height="600" loading="lazy" />
             </div>
 
             {/* Mid Card (Card 2) */}
@@ -113,7 +113,7 @@ export default function UPTDump() {
                   : ''
               }`}
             >
-              <img src={midItem.image} alt="Photo Dump" />
+              <img src={midItem.image} alt="Photo Dump UPT" width="500" height="600" loading="lazy" />
             </div>
 
             {/* Front Main Card (Card 1) */}
@@ -126,7 +126,7 @@ export default function UPTDump() {
                   : ''
               }`}
             >
-              <img src={frontItem.image} alt="Photo Dump" />
+              <img src={frontItem.image} alt="Photo Dump UPT" width="500" height="600" loading="lazy" />
             </div>
           </div>
 

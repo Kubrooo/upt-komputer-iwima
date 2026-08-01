@@ -57,6 +57,9 @@ export default function LabExplorer() {
               <img
                 src={currentLab.image || '/images/praktikumlab.webp'}
                 alt={currentLab.name}
+                width="800"
+                height="600"
+                loading="lazy"
                 className={`w-full h-[380px] sm:h-[480px] object-cover transition-all duration-700 ${
                   photoZoom ? 'scale-110' : 'scale-100 group-hover:scale-105'
                 }`}

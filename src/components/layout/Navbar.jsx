@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Command, Menu, X, ChevronRight, PhoneCall } from 'lucide-react';
 
 /**
@@ -51,6 +50,8 @@ export default function Navbar({ onOpenSearch }) {
               <img
                 src="/images/logo-upt.webp"
                 alt="Logo UPT Komputer IWIMA"
+                width="100"
+                height="70"
                 className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
                   e.target.style.display = 'none';
@@ -118,52 +119,47 @@ export default function Navbar({ onOpenSearch }) {
       </header>
 
       {/* Mobile Drawer */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed top-[72px] left-0 right-0 z-30 bg-paper-950/95 backdrop-blur-xl border-b border-paper-800 px-6 py-8 md:hidden shadow-2xl"
-          >
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center justify-between pb-4 border-b border-paper-800">
-                <button
-                  onClick={onOpenSearch}
-                  className="flex items-center gap-1.5 text-xs text-amber-400 font-mono"
-                >
-                  <Search className="w-3.5 h-3.5" /> Cari
-                </button>
-              </div>
+      <div
+        className={`fixed top-[72px] left-0 right-0 z-30 bg-paper-950/95 backdrop-blur-xl border-b border-paper-800 px-6 py-8 md:hidden shadow-2xl transition-all duration-300 ${
+          mobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'
+        }`}
+      >
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center justify-between pb-4 border-b border-paper-800">
+            <button
+              onClick={onOpenSearch}
+              className="flex items-center gap-1.5 text-xs text-amber-400 font-mono cursor-pointer"
+            >
+              <Search className="w-3.5 h-3.5" /> Cari
+            </button>
+          </div>
 
-              <div className="flex flex-col gap-4">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between text-base font-serif italic text-paper-100 hover:text-amber-400 py-1 transition-colors border-b border-paper-900/50"
-                  >
-                    <span>{link.name}</span>
-                    <ChevronRight className="w-4 h-4 text-paper-300" />
-                  </a>
-                ))}
-              </div>
+          <div className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between text-base font-serif italic text-paper-100 hover:text-amber-400 py-1 transition-colors border-b border-paper-900/50"
+              >
+                <span>{link.name}</span>
+                <ChevronRight className="w-4 h-4 text-paper-300" />
+              </a>
+            ))}
+          </div>
 
-              <div className="pt-2">
-                <a
-                  href="#support"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-amber-500 text-paper-950 font-semibold text-sm hover:bg-amber-400 transition-colors"
-                >
-                  <PhoneCall className="w-4 h-4" />
-                  Hubungi Bantuan Teknis
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          <div className="pt-2">
+            <a
+              href="#support"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-amber-500 text-paper-950 font-semibold text-sm hover:bg-amber-400 transition-colors"
+            >
+              <PhoneCall className="w-4 h-4" />
+              Hubungi Bantuan Teknis
+            </a>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
