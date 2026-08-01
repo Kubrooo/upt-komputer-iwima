@@ -11,6 +11,9 @@ export default defineConfig({
   build: {
     target: 'esnext',
     cssCodeSplit: true,
+    modulePreload: {
+      polyfill: false
+    },
     rollupOptions: {
       output: {
         manualChunks: {

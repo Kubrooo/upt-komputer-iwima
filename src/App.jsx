@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
-import HiddenBackbone from './components/sections/HiddenBackbone';
-import WhyUPTExists from './components/sections/WhyUPTExists';
-import FeaturedServices from './components/sections/FeaturedServices';
-import LabExplorer from './components/sections/LabExplorer';
-import AcademicSupportTicket from './components/sections/AcademicSupportTicket';
-import DocumentationGallery from './components/sections/DocumentationGallery';
-import UPTDump from './components/sections/UPTDump';
-import EditorialFAQ from './components/sections/EditorialFAQ';
-import QuickSearchModal from './components/modals/QuickSearchModal';
-import Footer from './components/layout/Footer';
+
+// Below-The-Fold Lazy Loaded Sections
+const HiddenBackbone = lazy(() => import('./components/sections/HiddenBackbone'));
+const WhyUPTExists = lazy(() => import('./components/sections/WhyUPTExists'));
+const FeaturedServices = lazy(() => import('./components/sections/FeaturedServices'));
+const LabExplorer = lazy(() => import('./components/sections/LabExplorer'));
+const AcademicSupportTicket = lazy(() => import('./components/sections/AcademicSupportTicket'));
+const DocumentationGallery = lazy(() => import('./components/sections/DocumentationGallery'));
+const UPTDump = lazy(() => import('./components/sections/UPTDump'));
+const EditorialFAQ = lazy(() => import('./components/sections/EditorialFAQ'));
+const QuickSearchModal = lazy(() => import('./components/modals/QuickSearchModal'));
+const Footer = lazy(() => import('./components/layout/Footer'));
 
 /**
  * Komponen Utama (Root) Portal Web UPT Komputer IWIMA.
@@ -54,24 +56,26 @@ export default function App() {
       {/* Main Narrative Content Sections */}
       <main>
         <Hero onOpenSearch={() => setSearchOpen(true)} />
-        <HiddenBackbone />
-        <WhyUPTExists />
-        <FeaturedServices />
-        <LabExplorer />
-        <AcademicSupportTicket />
-        <DocumentationGallery />
-        <UPTDump />
-        <EditorialFAQ />
+        <Suspense fallback={null}>
+          <HiddenBackbone />
+          <WhyUPTExists />
+          <FeaturedServices />
+          <LabExplorer />
+          <AcademicSupportTicket />
+          <DocumentationGallery />
+          <UPTDump />
+          <EditorialFAQ />
+        </Suspense>
       </main>
 
       {/* Footer */}
-      <Footer />
-
-      {/* Command Palette Easter Egg Modal (Ctrl+K) */}
-      <QuickSearchModal
-        isOpen={searchOpen}
-        onClose={() => setSearchOpen(false)}
-      />
+      <Suspense fallback={null}>
+        <Footer />
+        <QuickSearchModal
+          isOpen={searchOpen}
+          onClose={() => setSearchOpen(false)}
+        />
+      </Suspense>
     </div>
   );
 }
