@@ -80,6 +80,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#dump" className="hover:text-paper-50 transition-colors flex items-center gap-1.5">
+                  <span>› UPT Dump & Behind The Scenes</span>
+                </a>
+              </li>
+              <li>
                 <a href="#faq" className="hover:text-paper-50 transition-colors flex items-center gap-1.5">
                   <span>› Pertanyaan Umum (FAQ)</span>
                 </a>

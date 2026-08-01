@@ -58,7 +58,7 @@ export default function Hero({ onOpenSearch }) {
         >
           <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
           <span className="text-xs font-mono uppercase tracking-wider text-paper-200">
-            Jejak Pendukung Akademik IWIMA
+            A Place to Grow Together — UPT Komputer IWIMA
           </span>
         </motion.div>
 

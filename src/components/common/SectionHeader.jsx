@@ -11,11 +11,12 @@ import React from 'react';
  * @param {string} [props.className] - Kelas CSS tambahan
  */
 export default function SectionHeader({ badge, title, highlight, subtitle, className = "" }) {
+  const isCentered = className.includes('text-center') || className.includes('mx-auto');
+
   return (
     <div className={`space-y-4 ${className}`}>
       {badge && (
         <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
           <span>{badge}</span>
         </div>
       )}
@@ -24,7 +25,7 @@ export default function SectionHeader({ badge, title, highlight, subtitle, class
         {highlight && <span className="italic text-amber-300">{highlight}</span>}
       </h2>
       {subtitle && (
-        <p className="text-sm font-sans text-paper-300 max-w-md">
+        <p className={`text-sm font-sans text-paper-300 max-w-lg ${isCentered ? 'mx-auto' : ''}`}>
           {subtitle}
         </p>
       )}

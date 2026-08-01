@@ -31,6 +31,7 @@ export default function Navbar({ onOpenSearch }) {
     { name: 'Laboratorium', href: '#labs' },
     { name: 'Bantuan Teknis', href: '#support' },
     { name: 'Dokumentasi', href: '#documentation' },
+    { name: 'UPT Dump', href: '#dump' },
     { name: 'FAQ', href: '#faq' },
   ];
 

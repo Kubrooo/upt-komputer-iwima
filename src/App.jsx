@@ -7,6 +7,7 @@ import FeaturedServices from './components/sections/FeaturedServices';
 import LabExplorer from './components/sections/LabExplorer';
 import AcademicSupportTicket from './components/sections/AcademicSupportTicket';
 import DocumentationGallery from './components/sections/DocumentationGallery';
+import UPTDump from './components/sections/UPTDump';
 import EditorialFAQ from './components/sections/EditorialFAQ';
 import QuickSearchModal from './components/modals/QuickSearchModal';
 import Footer from './components/layout/Footer';
@@ -32,6 +33,7 @@ export default function App() {
         <LabExplorer />
         <AcademicSupportTicket />
         <DocumentationGallery />
+        <UPTDump />
         <EditorialFAQ />
       </main>
 
