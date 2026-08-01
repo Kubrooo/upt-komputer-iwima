@@ -49,7 +49,7 @@ export default function Navbar({ onOpenSearch }) {
             {/* Brand Logo & Editorial Title */}
             <a href="#" className="flex items-center gap-3.5 group text-left shrink-0">
               <img
-                src="/images/Logo UPT.png"
+                src="/images/logo-upt.webp"
                 alt="Logo UPT Komputer IWIMA"
                 className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {

@@ -7,5 +7,19 @@ export default defineConfig({
   server: {
     port: 3000,
     open: false
+  },
+  build: {
+    target: 'esnext',
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-framer': ['framer-motion'],
+          'vendor-lucide': ['lucide-react'],
+          'vendor-confetti': ['canvas-confetti']
+        }
+      }
+    }
   }
 })

@@ -25,10 +25,8 @@ export default function Hero({ onOpenSearch }) {
   useEffect(() => {
     updateRect();
     window.addEventListener('resize', updateRect, { passive: true });
-    window.addEventListener('scroll', updateRect, { passive: true });
     return () => {
       window.removeEventListener('resize', updateRect);
-      window.removeEventListener('scroll', updateRect);
       if (rafId.current) cancelAnimationFrame(rafId.current);
     };
   }, []);
@@ -68,6 +66,8 @@ export default function Hero({ onOpenSearch }) {
         <img
           src="/images/hero-background.webp"
           alt="Suasana Laboratorium Komputer IWIMA"
+          fetchpriority="high"
+          decoding="async"
           className="w-full h-full object-cover object-center filter brightness-75 contrast-110 scale-105"
         />
         <div className="absolute inset-0 bg-noise opacity-20 z-10" />
