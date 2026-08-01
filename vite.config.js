@@ -11,24 +11,36 @@ function nonBlockingCssPlugin() {
         '<link rel="preload" href="$2" as="style"><link rel="stylesheet"$1href="$2"$3 media="print" onload="this.media=\'all\'"><noscript><link rel="stylesheet"$1href="$2"$3></noscript>'
       );
 
-      // 2. Inject modulepreload for entry JS file into <head> to break Critical Request Chain
-      const scriptMatch = html.match(/<script type="module"([^>]+)src="([^"]+\.js)"([^>]*)>/);
-      if (scriptMatch && scriptMatch[2]) {
-        const entryJs = scriptMatch[2];
-        const preloadTag = `<link rel="modulepreload" href="${entryJs}">`;
-        if (!transformed.includes(preloadTag)) {
-          transformed = transformed.replace('</head>', `  ${preloadTag}\n</head>`);
-        }
-      }
-
       return transformed;
+    }
+  };
+}
+
+function inlineEntryJsPlugin() {
+  return {
+    name: 'inline-entry-js',
+    enforce: 'post',
+    transformIndexHtml(html, ctx) {
+      if (!ctx || !ctx.bundle) return html;
+      return html.replace(
+        /<script type="module"([^>]+)src="([^"]+\.js)"([^>]*)><\/script>/g,
+        (match, p1, src) => {
+          const fileName = src.replace(/^\//, '');
+          const chunk = ctx.bundle[fileName] || Object.values(ctx.bundle).find((b) => b.fileName === fileName);
+          if (chunk && chunk.code && chunk.code.length < 35000) {
+            delete ctx.bundle[fileName];
+            return `<script type="module">${chunk.code}</script>`;
+          }
+          return match;
+        }
+      );
     }
   };
 }
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), nonBlockingCssPlugin()],
+  plugins: [react(), nonBlockingCssPlugin(), inlineEntryJsPlugin()],
   server: {
     port: 3000,
     open: false
