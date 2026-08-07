@@ -57,7 +57,7 @@ export default function UPTDump() {
   const backItem = dumpItems[(currentIndex + 2) % total];
 
   return (
-    <section id="dump" className="py-24 px-4 sm:px-6 lg:px-8 bg-paper-950 text-paper-100 relative overflow-hidden scroll-section border-t border-paper-800/80">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-paper-950 text-paper-100 relative overflow-hidden scroll-section border-t border-paper-800/80">
       {/* Grid Pattern Background */}
       <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
 

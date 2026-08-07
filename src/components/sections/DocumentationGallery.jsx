@@ -18,7 +18,7 @@ export default function DocumentationGallery() {
     : galleryItems.filter(item => item.category === filter);
 
   return (
-    <section id="documentation" className="py-24 px-4 sm:px-6 lg:px-8 bg-paper-950 text-paper-100 border-b border-paper-800 relative overflow-hidden scroll-section">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-paper-950 text-paper-100 border-b border-paper-800 relative overflow-hidden scroll-section">
       {/* Background Enhancements */}
       <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
       <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none animate-float-slow" />

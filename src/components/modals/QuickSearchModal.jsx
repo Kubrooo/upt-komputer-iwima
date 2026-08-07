@@ -10,8 +10,9 @@ import { searchItems } from '../../data/searchData';
  * @param {Object} props - Props komponen
  * @param {boolean} props.isOpen - State apakah modal sedang terbuka
  * @param {Function} props.onClose - Callback untuk menutup modal
+ * @param {Function} props.onOpen - Callback untuk membuka modal
  */
-export default function QuickSearchModal({ isOpen, onClose }) {
+export default function QuickSearchModal({ isOpen, onClose, onOpen }) {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
@@ -19,15 +20,18 @@ export default function QuickSearchModal({ isOpen, onClose }) {
       if (e.key === 'Escape' && isOpen) {
         onClose();
       }
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
-        if (isOpen) onClose();
-        else onClose(true);
+        if (isOpen) {
+          onClose();
+        } else if (onOpen) {
+          onOpen();
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, onOpen]);
 
   const filteredItems = query.trim() === ''
     ? searchItems
@@ -36,6 +40,25 @@ export default function QuickSearchModal({ isOpen, onClose }) {
         item.desc.toLowerCase().includes(query.toLowerCase()) ||
         item.category.toLowerCase().includes(query.toLowerCase())
       );
+
+  const handleResultClick = (e, href) => {
+    e.preventDefault();
+    onClose();
+    if (href && href.startsWith('#')) {
+      const targetId = href.substring(1);
+      window.dispatchEvent(new CustomEvent('lazy-section-reveal', { detail: targetId }));
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        const headerOffset = 70;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -92,7 +115,7 @@ export default function QuickSearchModal({ isOpen, onClose }) {
                   <a
                     key={idx}
                     href={item.href}
-                    onClick={onClose}
+                    onClick={(e) => handleResultClick(e, item.href)}
                     className="flex items-start justify-between p-3.5 rounded-2xl bg-paper-950/60 hover:bg-paper-950 border border-paper-800/80 hover:border-amber-500/50 transition-all duration-200 group"
                   >
                     <div className="flex items-start gap-3">

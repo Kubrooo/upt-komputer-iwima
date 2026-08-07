@@ -6,6 +6,24 @@ import { MapPin, Mail, Clock } from 'lucide-react';
  * Menampilkan informasi identitas kampus, tautan navigasi pintas, alamat lokasi, jam kerja, serta status sistem.
  */
 export default function Footer() {
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    if (href && href.startsWith('#')) {
+      const targetId = href.substring(1);
+      window.dispatchEvent(new CustomEvent('lazy-section-reveal', { detail: targetId }));
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        const headerOffset = 70;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
   return (
     <footer id="footer" className="bg-paper-950 text-paper-100 border-t border-paper-800 pt-20 pb-12 px-4 sm:px-6 lg:px-8 relative scroll-section">
       <div className="max-w-7xl mx-auto space-y-16">
@@ -55,37 +73,37 @@ export default function Footer() {
             <h4 className="text-xs font-mono uppercase tracking-widest text-amber-400">Navigasi Utama</h4>
             <ul className="space-y-2.5 text-xs font-mono text-paper-300">
               <li>
-                <a href="#story" className="hover:text-paper-50 transition-colors flex items-center gap-1.5">
+                <a href="#story" onClick={(e) => handleNavClick(e, '#story')} className="hover:text-paper-50 transition-colors flex items-center gap-1.5 cursor-pointer">
                   <span>› Kisah & Realita Kampus</span>
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-paper-50 transition-colors flex items-center gap-1.5">
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-paper-50 transition-colors flex items-center gap-1.5 cursor-pointer">
                   <span>› Layanan Laboratorium & Software</span>
                 </a>
               </li>
               <li>
-                <a href="#labs" className="hover:text-paper-50 transition-colors flex items-center gap-1.5">
+                <a href="#labs" onClick={(e) => handleNavClick(e, '#labs')} className="hover:text-paper-50 transition-colors flex items-center gap-1.5 cursor-pointer">
                   <span>› Spesifikasi Perangkat Lab</span>
                 </a>
               </li>
               <li>
-                <a href="#support" className="hover:text-paper-50 transition-colors flex items-center gap-1.5">
+                <a href="#support" onClick={(e) => handleNavClick(e, '#support')} className="hover:text-paper-50 transition-colors flex items-center gap-1.5 cursor-pointer">
                   <span>› Form Bantuan Teknis Mahasiswa</span>
                 </a>
               </li>
               <li>
-                <a href="#documentation" className="hover:text-paper-50 transition-colors flex items-center gap-1.5">
+                <a href="#documentation" onClick={(e) => handleNavClick(e, '#documentation')} className="hover:text-paper-50 transition-colors flex items-center gap-1.5 cursor-pointer">
                   <span>› Dokumentasi Kegiatan Fasilitas</span>
                 </a>
               </li>
               <li>
-                <a href="#dump" className="hover:text-paper-50 transition-colors flex items-center gap-1.5">
+                <a href="#dump" onClick={(e) => handleNavClick(e, '#dump')} className="hover:text-paper-50 transition-colors flex items-center gap-1.5 cursor-pointer">
                   <span>› UPT Dump & Behind The Scenes</span>
                 </a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-paper-50 transition-colors flex items-center gap-1.5">
+                <a href="#faq" onClick={(e) => handleNavClick(e, '#faq')} className="hover:text-paper-50 transition-colors flex items-center gap-1.5 cursor-pointer">
                   <span>› Pertanyaan Umum (FAQ)</span>
                 </a>
               </li>

@@ -2,16 +2,32 @@ import React, { useState, useEffect, useRef } from 'react';
 
 /**
  * Komponen Pembungkus LazySection.
- * Memuat komponen anak HANYA ketika section mendekati area viewport layar via IntersectionObserver.
- * Mencegah Framer Motion pada section bawah mengukur geometri DOM saat muatan awal halaman,
- * mengeliminasi Forced Reflow (70ms -> 0ms) pada audit Lighthouse.
+ * Memuat komponen anak HANYA ketika section mendekati area viewport layar via IntersectionObserver,
+ * atau ketika section dituju secara langsung via navigasi Navbar / Hash Link.
  */
-export default function LazySection({ children, minHeight = '300px', rootMargin = '250px' }) {
+export default function LazySection({ id, children, minHeight = '300px', rootMargin = '350px' }) {
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
+    // If window hash matches this section's ID, reveal immediately
+    if (id && window.location.hash === `#${id}`) {
+      setIsVisible(true);
+    }
+
+    const handleReveal = (e) => {
+      if (id && e.detail === id) {
+        setIsVisible(true);
+      }
+    };
+
+    window.addEventListener('lazy-section-reveal', handleReveal);
+    return () => window.removeEventListener('lazy-section-reveal', handleReveal);
+  }, [id]);
+
+  useEffect(() => {
     if (isVisible) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -30,8 +46,14 @@ export default function LazySection({ children, minHeight = '300px', rootMargin 
   }, [isVisible, rootMargin]);
 
   return (
-    <div ref={containerRef} style={{ minHeight: isVisible ? 'auto' : minHeight }}>
+    <div 
+      id={id} 
+      ref={containerRef} 
+      className="scroll-section"
+      style={{ minHeight: isVisible ? 'auto' : minHeight }}
+    >
       {isVisible ? children : null}
     </div>
   );
 }
+

@@ -141,6 +141,7 @@ export default function Hero({ onOpenSearch }) {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
           <a
             href="#story"
+            onClick={(e) => handleNavClick(e, '#story')}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 hover:scale-105 active:scale-95 text-paper-950 font-semibold text-sm transition-all duration-300 shadow-xl shadow-amber-500/25 group cursor-pointer"
           >
             <span>Mulai Mengenal UPT</span>
@@ -149,6 +150,7 @@ export default function Hero({ onOpenSearch }) {
 
           <a
             href="#labs"
+            onClick={(e) => handleNavClick(e, '#labs')}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-paper-900 hover:bg-paper-800 hover:scale-105 active:scale-95 border border-paper-700 hover:border-amber-400 text-paper-100 font-medium text-sm transition-all duration-300 group cursor-pointer shadow-lg"
           >
             <Monitor className="w-4 h-4 text-paper-400 group-hover:text-amber-400 transition-colors" />

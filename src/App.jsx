@@ -58,28 +58,28 @@ export default function App() {
       <main>
         <Hero onOpenSearch={() => setSearchOpen(true)} />
         <Suspense fallback={null}>
-          <LazySection minHeight="350px">
+          <LazySection id="story" minHeight="350px">
             <HiddenBackbone />
           </LazySection>
-          <LazySection minHeight="450px">
+          <LazySection id="why-upt" minHeight="450px">
             <WhyUPTExists />
           </LazySection>
-          <LazySection minHeight="500px">
+          <LazySection id="services" minHeight="500px">
             <FeaturedServices />
           </LazySection>
-          <LazySection minHeight="550px">
+          <LazySection id="labs" minHeight="550px">
             <LabExplorer />
           </LazySection>
-          <LazySection minHeight="500px">
+          <LazySection id="support" minHeight="500px">
             <AcademicSupportTicket />
           </LazySection>
-          <LazySection minHeight="550px">
+          <LazySection id="documentation" minHeight="550px">
             <DocumentationGallery />
           </LazySection>
-          <LazySection minHeight="500px">
+          <LazySection id="dump" minHeight="500px">
             <UPTDump />
           </LazySection>
-          <LazySection minHeight="550px">
+          <LazySection id="faq" minHeight="550px">
             <EditorialFAQ />
           </LazySection>
         </Suspense>
@@ -93,6 +93,7 @@ export default function App() {
         <QuickSearchModal
           isOpen={searchOpen}
           onClose={() => setSearchOpen(false)}
+          onOpen={() => setSearchOpen(true)}
         />
       </Suspense>
     </div>

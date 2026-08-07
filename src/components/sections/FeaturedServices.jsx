@@ -14,7 +14,7 @@ export default function FeaturedServices() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 bg-paper-900 border-b border-paper-800 relative overflow-hidden scroll-section">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-paper-900 border-b border-paper-800 relative overflow-hidden scroll-section">
       {/* Background Enhancements */}
       <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none animate-float-slow" />
