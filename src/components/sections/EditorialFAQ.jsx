@@ -138,7 +138,9 @@ export default function EditorialFAQ() {
                 >
                   <button
                     onClick={() => setOpenId(isOpen ? null : faq.id)}
-                    className="w-full p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${faq.id}`}
+                    className="w-full text-left p-6 sm:p-7 flex items-start justify-between gap-4 cursor-pointer focus:outline-none"
                   >
                     <div className="flex items-center gap-3">
                       <span className="px-2.5 py-1 rounded-md bg-paper-900 border border-paper-800 text-[10px] font-mono text-amber-400 font-bold uppercase">

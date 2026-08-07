@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, ArrowRight } from 'lucide-react';
+import { Search, X, ArrowRight, CornerDownLeft } from 'lucide-react';
 import { searchItems } from '../../data/searchData';
 
 /**
  * Komponen Modal Command Palette / Quick Search.
- * Menyediakan dialog pencarian instan dengan shortcut keyboard (Ctrl+K atau Escape).
+ * Menyediakan dialog pencarian instan dengan shortcut keyboard (Ctrl+K, Panah Atas/Bawah, Enter, atau Escape).
  *
  * @param {Object} props - Props komponen
  * @param {boolean} props.isOpen - State apakah modal sedang terbuka
@@ -14,24 +14,7 @@ import { searchItems } from '../../data/searchData';
  */
 export default function QuickSearchModal({ isOpen, onClose, onOpen }) {
   const [query, setQuery] = useState('');
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        if (isOpen) {
-          onClose();
-        } else if (onOpen) {
-          onOpen();
-        }
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose, onOpen]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const filteredItems = query.trim() === ''
     ? searchItems
@@ -41,8 +24,12 @@ export default function QuickSearchModal({ isOpen, onClose, onOpen }) {
         item.category.toLowerCase().includes(query.toLowerCase())
       );
 
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [query]);
+
   const handleResultClick = (e, href) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     onClose();
     if (href && href.startsWith('#')) {
       const targetId = href.substring(1);
@@ -60,11 +47,49 @@ export default function QuickSearchModal({ isOpen, onClose, onOpen }) {
     }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (isOpen) {
+          onClose();
+        } else if (onOpen) {
+          onOpen();
+        }
+      }
+      if (isOpen && filteredItems.length > 0) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev + 1) % filteredItems.length);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev - 1 + filteredItems.length) % filteredItems.length);
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          const target = filteredItems[selectedIndex];
+          if (target) {
+            handleResultClick(null, target.href);
+          }
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose, onOpen, filteredItems, selectedIndex]);
+
   if (!isOpen) return null;
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 sm:px-6">
+      <div 
+        role="dialog" 
+        aria-modal="true" 
+        aria-label="Pencarian Cepat UPT Komputer"
+        className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 sm:px-6"
+      >
         {/* Backdrop overlay */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -88,14 +113,15 @@ export default function QuickSearchModal({ isOpen, onClose, onOpen }) {
             <input
               type="text"
               autoFocus
-              placeholder="Cari layanan, fasilitas lab, software, atau bantuan..."
+              placeholder="Cari layanan, fasilitas lab, software, atau bantuan... (Gunakan ↑ ↓ dan Enter)"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="w-full bg-transparent text-paper-100 text-sm font-sans placeholder-paper-400 focus:outline-none"
             />
             <button
               onClick={onClose}
-              className="p-1 rounded-lg text-paper-400 hover:text-paper-100 bg-paper-950 border border-paper-800"
+              className="p-1 rounded-lg text-paper-400 hover:text-paper-100 bg-paper-950 border border-paper-800 cursor-pointer"
+              aria-label="Tutup pencarian"
             >
               <X className="w-4 h-4" />
             </button>
@@ -111,20 +137,30 @@ export default function QuickSearchModal({ isOpen, onClose, onOpen }) {
             ) : (
               filteredItems.map((item, idx) => {
                 const IconC = item.icon;
+                const isSelected = idx === selectedIndex;
                 return (
                   <a
                     key={idx}
                     href={item.href}
                     onClick={(e) => handleResultClick(e, item.href)}
-                    className="flex items-start justify-between p-3.5 rounded-2xl bg-paper-950/60 hover:bg-paper-950 border border-paper-800/80 hover:border-amber-500/50 transition-all duration-200 group"
+                    onMouseEnter={() => setSelectedIndex(idx)}
+                    className={`flex items-start justify-between p-3.5 rounded-2xl border transition-all duration-200 group ${
+                      isSelected
+                        ? 'bg-paper-950 border-amber-500/80 shadow-lg shadow-amber-500/10'
+                        : 'bg-paper-950/60 border-paper-800/80 hover:border-amber-500/50'
+                    }`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="p-2.5 rounded-xl bg-paper-900 text-amber-400 group-hover:bg-amber-500 group-hover:text-paper-950 transition-colors shrink-0">
+                      <div className={`p-2.5 rounded-xl transition-colors shrink-0 ${
+                        isSelected ? 'bg-amber-500 text-paper-950' : 'bg-paper-900 text-amber-400 group-hover:bg-amber-500 group-hover:text-paper-950'
+                      }`}>
                         <IconC className="w-4 h-4" />
                       </div>
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <span className="font-serif text-sm text-paper-100 font-medium group-hover:text-amber-300 transition-colors">
+                          <span className={`font-serif text-sm font-medium transition-colors ${
+                            isSelected ? 'text-amber-300' : 'text-paper-100 group-hover:text-amber-300'
+                          }`}>
                             {item.title}
                           </span>
                           <span className="text-[10px] font-mono uppercase bg-paper-800 text-paper-300 px-2 py-0.5 rounded border border-paper-700">
@@ -136,7 +172,16 @@ export default function QuickSearchModal({ isOpen, onClose, onOpen }) {
                         </p>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-paper-400 group-hover:text-amber-400 group-hover:translate-x-1 transition-all shrink-0 mt-1" />
+                    <div className="flex items-center gap-2 shrink-0 mt-1">
+                      {isSelected && (
+                        <kbd className="hidden sm:inline-flex items-center gap-1 text-[10px] bg-paper-800 text-amber-400 px-2 py-0.5 rounded border border-amber-500/40">
+                          <CornerDownLeft className="w-2.5 h-2.5" /> Enter
+                        </kbd>
+                      )}
+                      <ArrowRight className={`w-4 h-4 transition-all ${
+                        isSelected ? 'text-amber-400 translate-x-1' : 'text-paper-400 group-hover:text-amber-400 group-hover:translate-x-1'
+                      }`} />
+                    </div>
                   </a>
                 );
               })
@@ -146,9 +191,16 @@ export default function QuickSearchModal({ isOpen, onClose, onOpen }) {
           {/* Footer Shortcuts hint */}
           <div className="px-6 py-3 bg-paper-950 border-t border-paper-800 flex items-center justify-between text-[11px] font-mono text-paper-400">
             <span>UPT Komputer IWIMA Quick Search</span>
-            <div className="flex items-center gap-2">
-              <kbd className="px-1.5 py-0.5 bg-paper-900 border border-paper-800 rounded text-paper-300">ESC</kbd>
-              <span>untuk menutup</span>
+            <div className="flex items-center gap-3">
+              <span className="hidden sm:inline-flex items-center gap-1">
+                <kbd className="px-1.5 py-0.5 bg-paper-900 border border-paper-800 rounded text-paper-300">↑</kbd>
+                <kbd className="px-1.5 py-0.5 bg-paper-900 border border-paper-800 rounded text-paper-300">↓</kbd>
+                <span>navigasi</span>
+              </span>
+              <div className="flex items-center gap-1">
+                <kbd className="px-1.5 py-0.5 bg-paper-900 border border-paper-800 rounded text-paper-300">ESC</kbd>
+                <span>menutup</span>
+              </div>
             </div>
           </div>
 
@@ -157,3 +209,4 @@ export default function QuickSearchModal({ isOpen, onClose, onOpen }) {
     </AnimatePresence>
   );
 }
+

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Send, Laptop, Terminal } from 'lucide-react';
+import { CheckCircle2, Send, Laptop, Terminal, Copy, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { supportIssues } from '../../data/supportData';
 import SectionHeader from '../common/SectionHeader';
@@ -16,6 +16,7 @@ export default function AcademicSupportTicket() {
   const [studentProdi, setStudentProdi] = useState('');
   const [issueDetail, setIssueDetail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const currentIssue = supportIssues.find((i) => i.id === issueType);
 
@@ -146,8 +147,23 @@ export default function AcademicSupportTicket() {
                   <p className="text-xs text-paper-300 font-sans max-w-md mx-auto">
                     Terima kasih <strong className="text-paper-100">{studentName}</strong> ({studentProdi}). Tim UPT Komputer IWIMA telah menerima permintaan untuk <span className="text-amber-400 font-medium">{currentIssue.title}</span>.
                   </p>
+                  <div className="bg-paper-900 border border-amber-500/30 p-4 rounded-2xl max-w-sm mx-auto font-mono text-xs space-y-2 text-center">
+                    <div className="text-paper-400 uppercase text-[10px]">Nomor Referensi Tiket</div>
+                    <div className="text-amber-400 font-bold text-lg tracking-wider">#UPT-{(Math.random() * 9000 + 1000).toFixed(0)}</div>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard?.writeText(`#UPT-${(Math.random() * 9000 + 1000).toFixed(0)}`);
+                        setCopied(true);
+                        setTimeout(() => setCopied(false), 2000);
+                      }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-paper-950 text-paper-300 hover:text-amber-400 border border-paper-800 transition-colors text-[11px] cursor-pointer"
+                    >
+                      {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                      <span>{copied ? 'Tersalin ke Clipboard!' : 'Salin Kode Tiket'}</span>
+                    </button>
+                  </div>
                   <p className="text-xs font-mono text-paper-400">
-                    Silakan langsung menuju ke Ruang UPT Komputer IWIMA pada jam operasional.
+                    Silakan tunjukkan kode tiket ini ke petugas Ruang UPT Komputer IWIMA pada jam operasional.
                   </p>
                   <button
                     onClick={() => {
@@ -156,7 +172,7 @@ export default function AcademicSupportTicket() {
                       setStudentProdi('');
                       setIssueDetail('');
                     }}
-                    className="mt-4 px-6 py-2.5 rounded-xl bg-paper-900 border border-paper-700 text-xs font-mono text-amber-400 hover:bg-paper-800 transition-colors"
+                    className="mt-4 px-6 py-2.5 rounded-xl bg-paper-900 border border-paper-700 text-xs font-mono text-amber-400 hover:bg-paper-800 transition-colors cursor-pointer"
                   >
                     Buat Permohonan Lain
                   </button>

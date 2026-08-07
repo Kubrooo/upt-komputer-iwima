@@ -77,7 +77,7 @@ export default function UPTDump() {
           badge="Bab 07 — UPT Dump"
           title="UPT DUMP"
           highlight="Random Moment UPT"
-          subtitle="Ketuk atau usap tumpukan foto polaroid di bawah ini untuk melihat momen candid behind-the-scenes UPT Komputer IWIMA."
+          subtitle="Tap atau usap tumpukan foto polaroid di bawah ini untuk melihat momen candid behind-the-scenes UPT Komputer IWIMA."
           className="mx-auto text-center"
         />
 
@@ -100,7 +100,17 @@ export default function UPTDump() {
                   : ''
               }`}
             >
-              <img src={backItem.image} alt="Photo Dump UPT" width="500" height="600" loading="lazy" />
+              <img 
+                src={backItem.image} 
+                alt="Photo Dump UPT" 
+                width="500" 
+                height="600" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80';
+                }}
+              />
             </div>
 
             {/* Mid Card (Card 2) */}
@@ -113,7 +123,17 @@ export default function UPTDump() {
                   : ''
               }`}
             >
-              <img src={midItem.image} alt="Photo Dump UPT" width="500" height="600" loading="lazy" />
+              <img 
+                src={midItem.image} 
+                alt="Photo Dump UPT" 
+                width="500" 
+                height="600" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80';
+                }}
+              />
             </div>
 
             {/* Front Main Card (Card 1) */}
@@ -126,7 +146,17 @@ export default function UPTDump() {
                   : ''
               }`}
             >
-              <img src={frontItem.image} alt="Photo Dump UPT" width="500" height="600" loading="lazy" />
+              <img 
+                src={frontItem.image} 
+                alt="Photo Dump UPT" 
+                width="500" 
+                height="600" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80';
+                }}
+              />
             </div>
           </div>
 

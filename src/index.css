@@ -15,19 +15,10 @@
     scroll-margin-top: 70px;
   }
   
-  /* Custom smooth scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #0B0A09;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #27272A;
-    border-radius: 4px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #3F3F46;
+  /* Universal Focus Visible Ring for 100% Accessibility Compliance */
+  *:focus-visible {
+    outline: 2px solid #f59e0b !important;
+    outline-offset: 3px !important;
   }
 }
 
