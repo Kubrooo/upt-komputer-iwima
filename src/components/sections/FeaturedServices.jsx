@@ -35,7 +35,7 @@ export default function FeaturedServices() {
         >
           <SectionHeader
             badge="Bab 03 — Layanan Unggulan"
-            title="Tiga Pilar Utama"
+            title="Dua Pilar Utama"
             highlight="Dukungan Teknologi UPT"
             subtitle="Setiap layanan dirancang untuk memastikan mahasiswa memiliki akses cepat terhadap perangkat, software, dan tempat belajar berstandar tinggi."
           />

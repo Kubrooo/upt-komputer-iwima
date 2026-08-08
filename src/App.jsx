@@ -2,8 +2,9 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
 import LazySection from './components/common/LazySection';
+import TerminalHUD from './components/common/TerminalHUD';
 
-// Below-The-Fold Lazy Loaded Sections
+// Below-The-Fold Lazy Loaded Sections & 3D Explorer
 const HiddenBackbone = lazy(() => import('./components/sections/HiddenBackbone'));
 const WhyUPTExists = lazy(() => import('./components/sections/WhyUPTExists'));
 const FeaturedServices = lazy(() => import('./components/sections/FeaturedServices'));
@@ -13,14 +14,16 @@ const DocumentationGallery = lazy(() => import('./components/sections/Documentat
 const UPTDump = lazy(() => import('./components/sections/UPTDump'));
 const EditorialFAQ = lazy(() => import('./components/sections/EditorialFAQ'));
 const QuickSearchModal = lazy(() => import('./components/modals/QuickSearchModal'));
+const Interactive3DExplorer = lazy(() => import('./components/3d/Interactive3DExplorer'));
 const Footer = lazy(() => import('./components/layout/Footer'));
 
 /**
  * Komponen Utama (Root) Portal Web UPT Komputer IWIMA.
- * Menggabungkan seluruh bagian halaman dan mengelola state global untuk Quick Search Modal.
+ * Menggabungkan seluruh bagian halaman dan mengelola state global untuk Quick Search Modal & 3D Explorer.
  */
 export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
+  const [is3DExplorerOpen, setIs3DExplorerOpen] = useState(false);
   const [mousePos, setMousePos] = useState({ x: -600, y: -600 });
 
   useEffect(() => {
@@ -40,6 +43,20 @@ export default function App() {
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
+
+  // Event Listener for 3D Computer Explorer launch
+  useEffect(() => {
+    const handleLaunch3D = () => setIs3DExplorerOpen(true);
+    window.addEventListener('launch-3d-explorer', handleLaunch3D);
+    return () => window.removeEventListener('launch-3d-explorer', handleLaunch3D);
+  }, []);
+
+  const handleClose3D = (resultText) => {
+    setIs3DExplorerOpen(false);
+    if (resultText) {
+      window.dispatchEvent(new CustomEvent('3d-explorer-closed', { detail: resultText }));
+    }
+  };
 
   return (
     <div className="min-h-screen bg-paper-950 text-paper-100 font-sans selection:bg-amber-500 selection:text-paper-950 relative overflow-x-hidden">
@@ -85,7 +102,7 @@ export default function App() {
         </Suspense>
       </main>
 
-      {/* Footer */}
+      {/* Footer & Floating Overlays */}
       <Suspense fallback={null}>
         <LazySection minHeight="250px">
           <Footer />
@@ -95,6 +112,10 @@ export default function App() {
           onClose={() => setSearchOpen(false)}
           onOpen={() => setSearchOpen(true)}
         />
+        <TerminalHUD />
+        {is3DExplorerOpen && (
+          <Interactive3DExplorer onClose={handleClose3D} />
+        )}
       </Suspense>
     </div>
   );

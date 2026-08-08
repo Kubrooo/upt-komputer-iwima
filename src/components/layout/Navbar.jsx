@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Command, Menu, X, ChevronRight, PhoneCall } from 'lucide-react';
+import { Search, Command, Menu, X, ChevronRight, PhoneCall, Terminal } from 'lucide-react';
 
 /**
  * Komponen Navigasi Atas (Navbar) Portal UPT Komputer IWIMA.
