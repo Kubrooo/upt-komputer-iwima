@@ -47,15 +47,18 @@ export default function Navbar({ onOpenSearch }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
+  // Prevent body scroll when mobile menu is open & dispatch toggle event for floating overlays
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      window.dispatchEvent(new CustomEvent('mobile-menu-toggle', { detail: true }));
     } else {
       document.body.style.overflow = 'unset';
+      window.dispatchEvent(new CustomEvent('mobile-menu-toggle', { detail: false }));
     }
     return () => {
       document.body.style.overflow = 'unset';
+      window.dispatchEvent(new CustomEvent('mobile-menu-toggle', { detail: false }));
     };
   }, [mobileMenuOpen]);
 
