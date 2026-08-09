@@ -41,7 +41,9 @@ UPT Komputer IWIMA berperan sebagai tulang punggung infrastruktur teknologi info
 | **Hidden Backbone** | Menampilkan statistik vital infrastruktur UPT Komputer (workstation, bandwidth, server uptime). | [HiddenBackbone.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/sections/HiddenBackbone.jsx) |
 | **Why UPT Exists** | Menjelaskan filosofi dan peran UPT Komputer dalam mendukung perkuliahan dan riset. | [WhyUPTExists.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/sections/WhyUPTExists.jsx) |
 | **Featured Services** | Katalog interaktif layanan lab & dukungan teknis lengkap dengan modal detail spesifikasi/software. | [FeaturedServices.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/sections/FeaturedServices.jsx) |
-| **Interactive Lab Explorer** | Virtual tour / filter interaktif ruangan laboratorium komputer beserta jadwal & fasilitasnya. | [LabExplorer.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/sections/LabExplorer.jsx) |
+| **Interactive Lab Explorer** | Virtual tour / filter interaktif ruangan laboratorium komputer beserta jadwal, ketersediaan, dan peluncur 3D Hardware Explorer. | [LabExplorer.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/sections/LabExplorer.jsx) |
+| **3D Hardware Explorer** | Penjelajah 3D interaktif spesifikasi motherboard & komponen PC (CPU, RAM, GPU, SSD, PSU, Cooler) dengan efek suara sintetis. | [Interactive3DExplorer.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/3d/Interactive3DExplorer.jsx), [ComputerModels.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/3d/ComputerModels.jsx) |
+| **Terminal HUD & System Monitor** | Floating CLI widget bertema retro interaktif dengan pemantauan metrik server UPT real-time & navigasi perintah instan. | [TerminalHUD.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/common/TerminalHUD.jsx) |
 | **Academic Support Ticket** | Formulir pengajuan tiket bantuan teknis (lupa password, kendala software, dll.) dengan generator kode tiket & efek selebrasi. | [AcademicSupportTicket.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/sections/AcademicSupportTicket.jsx) |
 | **Documentation Gallery** | Galeri foto kegiatan praktikum, pelatihan, dan maintenance fasilitas UPT Komputer. | [DocumentationGallery.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/sections/DocumentationGallery.jsx) |
 | **UPT Dump** | Koleksi foto candid polaroid & momen behind-the-scenes aktivitas harian UPT Komputer beserta fitur Like interaktif. | [UPTDump.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/sections/UPTDump.jsx) |
@@ -53,8 +55,10 @@ UPT Komputer IWIMA berperan sebagai tulang punggung infrastruktur teknologi info
 ## Teknologi yang Digunakan
 
 - **Core Framework**: [React 18](https://react.dev/) & [Vite](https://vitejs.dev/)
+- **3D Graphics & Rendering**: [Three.js](https://threejs.org/), [React Three Fiber (`@react-three/fiber`)](https://r3f.docs.pmnd.rs/), & [React Three Drei (`@react-three/drei`)](https://github.com/pmndrs/drei)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) dengan skema warna *Custom Paper Dark Mode* (`paper-950`, `paper-900`, `amber-400`, dll.)
 - **Animasi & Transisi**: [Framer Motion](https://www.framer.com/motion/)
+- **Audio Synthesizer**: Web Audio API Procedural Sound Synthesizer (`src/utils/audioSFX.js`)
 - **Icon Pack**: [Lucide React](https://lucide.dev/)
 - **Interaktivitas Visual**: [canvas-confetti](https://www.npmjs.com/package/canvas-confetti)
 - **Utility CSS**: [clsx](https://www.npmjs.com/package/clsx) & [tailwind-merge](https://www.npmjs.com/package/tailwind-merge)
@@ -65,13 +69,19 @@ UPT Komputer IWIMA berperan sebagai tulang punggung infrastruktur teknologi info
 
 ```text
 upt_komputer_iwima/
+├── docs/                   # Dokumentasi teknikal fitur spesifik
+│   └── FEATURE_3D_EXPLORER_AND_TERMINAL_HUD.md
 ├── public/                 # Asset statis publik (images, photo_dump)
 │   ├── images/
 │   └── photo_dump/
 ├── src/
 │   ├── components/         # Komponen React modular
-│   │   ├── common/         # Komponen reusabel (misal: SectionHeader)
-│   │   │   └── SectionHeader.jsx
+│   │   ├── 3d/             # Komponen visualisasi 3D Three.js / R3F
+│   │   │   ├── ComputerModels.jsx
+│   │   │   └── Interactive3DExplorer.jsx
+│   │   ├── common/         # Komponen reusabel & widget global
+│   │   │   ├── SectionHeader.jsx
+│   │   │   └── TerminalHUD.jsx
 │   │   ├── layout/         # Komponen tata letak (Navbar & Footer)
 │   │   │   ├── Navbar.jsx
 │   │   │   └── Footer.jsx
@@ -97,6 +107,7 @@ upt_komputer_iwima/
 │   │   ├── statsData.js
 │   │   └── supportData.js
 │   ├── utils/              # Helper & utility functions
+│   │   ├── audioSFX.js     # Web Audio API Synthesizer (Zero MP3/WAV assets)
 │   │   └── cn.js           # Function penanganan conditional Tailwind classes
 │   ├── App.jsx             # Komponen utama penataan layout & state global modal
 │   ├── main.jsx            # Entry point aplikasi React
@@ -189,6 +200,21 @@ Mengelola alur pengajuan tiket akademik mahasiswa/dosen. Menyediakan validator i
 ### `QuickSearchModal.jsx`
 [src/components/modals/QuickSearchModal.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/modals/QuickSearchModal.jsx)  
 Menyediakan fitur pencarian instan berbasis keyboard shortcut (`Ctrl + K` / `Cmd + K`). Menyaring data dari `searchData.js` secara otomatis sesuai kata kunci pengguna.
+
+### `Interactive3DExplorer.jsx` & `ComputerModels.jsx`
+[src/components/3d/Interactive3DExplorer.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/3d/Interactive3DExplorer.jsx) | [src/components/3d/ComputerModels.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/3d/ComputerModels.jsx)  
+Mengatur pengalaman 3D visual penjelajah hardware motherboard komputer laboratorium UPT. Dilengkapi kontrol orbit 360°, efek bintang latar belakang, hotspot interaktif, drawer spesifikasi rinci komponen (CPU, RAM, GPU, SSD, PSU, Air Cooler), serta integrasi audio sintetis Web Audio API.
+
+### `TerminalHUD.jsx`
+[src/components/common/TerminalHUD.jsx](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/components/common/TerminalHUD.jsx)  
+Widget melayang (*floating HUD*) antarmuka terminal retro interaktif. Menyediakan pemantauan statistik server real-time (CPU Load, RAM, Ping, Active Workstations) dan eksekusi perintah CLI instan (`help`, `status`, `lab`, `specs`, `ticket`, `clear`).
+
+### `audioSFX.js`
+[src/utils/audioSFX.js](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/utils/audioSFX.js)  
+Modul penjelas Web Audio API murni untuk memproses dan mengompilasi efek suara *procedural* (derum ambient fan 55Hz, *chime* interaksi komponen, dan *zap* transmisi listrik) tanpa memerlukan berkas audio eksternal.
+
+> [!NOTE]
+> Panduan teknikal lengkap mengenai arsitektur 3D Explorer, Terminal HUD, synthesizer audio, dan *Custom Event Bus* tersedia di [docs/FEATURE_3D_EXPLORER_AND_TERMINAL_HUD.md](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/docs/FEATURE_3D_EXPLORER_AND_TERMINAL_HUD.md).
 
 ### `cn.js`
 [src/utils/cn.js](file:///c:/Users/Ardiansyah/Documents/upt_komputer_iwima/src/utils/cn.js)  
